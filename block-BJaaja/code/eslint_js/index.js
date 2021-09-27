@@ -89,7 +89,7 @@ const num2 = increasePassedNumber(num1);
 console.log(num1);
 console.log(num2);
 
-// 2.
+// 2
 
 const animalMethods = {
   eat() {
@@ -105,22 +105,15 @@ const animalMethods = {
 };
 
 function createAnimal(location, numberOfLegs) {
+  // eslint-disable-next-line no-shadow
   const obj = Object.create(animalMethods);
   obj.location = location;
   obj.numberOfLegs = numberOfLegs;
   return obj;
 }
-
-function createDog(location, numberOfLegs, name, color) {
-  const obj = createAnimal(location, numberOfLegs);
-  Object.setPrototypeOf(obj, dogsMethods);
-  obj.name = name;
-  obj.color = color;
-  return obj;
-}
-
 const dogsMethods = {
   bark() {
+    // eslint-disable-next-line no-alert
     alert(`I am ${this.name} and I can bark 🐶`);
   },
   changeName(name) {
@@ -136,17 +129,19 @@ const dogsMethods = {
   },
 };
 
-Object.setPrototypeOf(dogsMethods, animalMethods);
-
-function createCat(location, numberOfLegs, name, colorOfEyes) {
+// eslint-disable-next-line no-unused-vars
+function createDog(location, numberOfLegs, name, color) {
+  // eslint-disable-next-line no-shadow
   const obj = createAnimal(location, numberOfLegs);
-  Object.setPrototypeOf(obj, catsMethods);
+  Object.setPrototypeOf(obj, dogsMethods);
   obj.name = name;
-  obj.color = colorOfEyes;
+  obj.color = color;
   return obj;
 }
+
 const catsMethods = {
   meow() {
+    // eslint-disable-next-line no-alert
     alert(`I am ${this.name} and I can do mewo meow 😹`);
   },
   changeName(name) {
@@ -161,30 +156,43 @@ const catsMethods = {
     return `I am ${this.name} and the color of my eyes are ${this.colorOfEyes}. I can also do meow meow`;
   },
 };
+
+Object.setPrototypeOf(dogsMethods, animalMethods);
+
+function createCat(location, numberOfLegs, name, colorOfEyes) {
+  // eslint-disable-next-line no-shadow
+  const obj = createAnimal(location, numberOfLegs);
+  Object.setPrototypeOf(obj, catsMethods);
+  obj.name = name;
+  obj.color = colorOfEyes;
+  return obj;
+}
+
 Object.setPrototypeOf(catsMethods, animalMethods);
 
+createCat('Mumbai', 4, 'jimmy', 'red');
 
-3.
-
+// 3
 
 const anakinSkywalker = 'Anakin Skywalker';
-const lukeSkywalker = 'Luke Skywalker';
+const lukeSkywalkerAgain = 'Luke Skywalker';
 
-const obj2 = {
+// eslint-disable-next-line no-unused-vars
+const obj1 = {
   episodeOne: 1,
   twoJediWalkIntoACantina: 2,
-  lukeSkywalker,
+  lukeSkywalkerAgain,
   episodeThree: 3,
   mayTheFourth: 4,
   anakinSkywalker,
 };
 
-4.
+// 4
 
-
+// eslint-disable-next-line no-shadow
 function getFullName(user) {
-  const firstName = user.firstName;
-  const lastName = user.lastName;
-
+  const { firstName, lastName } = user;
   return `${firstName} ${lastName}`;
 }
+
+getFullName('John');
