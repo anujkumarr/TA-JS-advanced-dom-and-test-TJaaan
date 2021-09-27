@@ -1,79 +1,125 @@
-## Using ESLint
+// var a = 1;
+// var b = 2;
 
-- Create a folder with a `.js` file
-- Install and setup the `eslint`
-- Go through [https://github.com/airbnb/javascript](https://github.com/airbnb/javascript)
-- List 10 bad practices from the link above
-- Check if you get error (red underline) in VSCode.
-- Comment the bad code and fix it below that
+const a = 1;
+console.log(a);
 
-Example:
+const b = 2;
+console.log(b);
 
-
-
-```js
-var count = 1;
-if (true) {
-  count += 1;
-}
+// var count = 1;
+// if (true) {
+//   count += 1;
+// }
 
 let count = 1;
 if (true) {
   count += 1;
+  console.log(count);
 }
-```
 
-#### Fix the following code given below by following the rules of Airbnb Style Guide. Use ESLint to find the error
+// const item = new Object();
+const item = {};
+console.log(item);
 
-1.
+// const atom = {
+//   value: 1,
 
-```js
-var num = 10;
+//   addValue: function (value) {
+//     return atom.value + value;
+//   },
+// };
 
-var increaseNumber = () => num++;
-var increasePassedNumber = (number) => number++;
+const atom = {
+  value: 1,
 
-var num1 = increaseNumber();
-var num2 = increasePassedNumber(num1);
+  addValue(value) {
+    return atom.value + value;
+  },
+};
+
+// const obj = {
+//   lukeSkywalker: lukeSkywalker,
+// };
+
+const obj = {
+  value: 'lukeSkywalker',
+};
+console.log(obj);
+
+// const bad = {
+//   foo: 3,
+//   bar: 4,
+//   'data-blah': 5,
+// };
+
+const good = {
+  foo: 3,
+  bar: 4,
+  'data-blah': 5,
+};
+console.log(good);
+
+// const items = new Array();
+
+const items = [];
+console.log(items);
+
+// Examples
+
+// 1.
+
+// var num = 10;
+
+// var increaseNumber = () => num++;
+// var increasePassedNumber = (number) => number++;
+
+// var num1 = increaseNumber();
+// var num2 = increasePassedNumber(num1);
+
+// console.log(num1);
+// console.log(num2);
+let num = 10;
+
+const increaseNumber = () => num++;
+const increasePassedNumber = (number) => number++;
+const num1 = increaseNumber();
+const num2 = increasePassedNumber(num1);
 
 console.log(num1);
 console.log(num2);
-```
 
-2.
+// 2.
 
-```js
-var animalMethods = {
-  eat: function () {
+const animalMethods = {
+  eat() {
     console.log(`I live in ${this.location} and I can eat`);
   },
-  changeLocation: function (newLocation) {
+  changeLocation(newLocation) {
     this.location = newLocation;
     return this.location;
   },
-  summary: function () {
-    console.log(
-      `I live in ${this.location} and I have ${this.numberOfLegs}`
-    );
+  summary() {
+    console.log(`I live in ${this.location} and I have ${this.numberOfLegs}`);
   },
 };
 
 function createAnimal(location, numberOfLegs) {
-  let obj = Object.create(animalMethods);
+  const obj = Object.create(animalMethods);
   obj.location = location;
   obj.numberOfLegs = numberOfLegs;
   return obj;
 }
 
 function createDog(location, numberOfLegs, name, color) {
-  let obj = createAnimal(location, numberOfLegs);
+  const obj = createAnimal(location, numberOfLegs);
   Object.setPrototypeOf(obj, dogsMethods);
   obj.name = name;
   obj.color = color;
   return obj;
 }
 
-var dogsMethods = {
+const dogsMethods = {
   bark() {
     alert(`I am ${this.name} and I can bark 🐶`);
   },
@@ -92,20 +138,14 @@ var dogsMethods = {
 
 Object.setPrototypeOf(dogsMethods, animalMethods);
 
-function createCat(
-  location,
-  numberOfLegs,
-  name,
-  colorOfEyes
-) {
-  let obj = createAnimal(location, numberOfLegs);
+function createCat(location, numberOfLegs, name, colorOfEyes) {
+  const obj = createAnimal(location, numberOfLegs);
   Object.setPrototypeOf(obj, catsMethods);
   obj.name = name;
   obj.color = colorOfEyes;
   return obj;
 }
-
-let catsMethods = {
+const catsMethods = {
   meow() {
     alert(`I am ${this.name} and I can do mewo meow 😹`);
   },
@@ -122,15 +162,15 @@ let catsMethods = {
   },
 };
 Object.setPrototypeOf(catsMethods, animalMethods);
-```
+
 
 3.
 
-```js
+
 const anakinSkywalker = 'Anakin Skywalker';
 const lukeSkywalker = 'Luke Skywalker';
 
-const obj = {
+const obj2 = {
   episodeOne: 1,
   twoJediWalkIntoACantina: 2,
   lukeSkywalker,
@@ -138,15 +178,13 @@ const obj = {
   mayTheFourth: 4,
   anakinSkywalker,
 };
-```
 
 4.
 
-```js
+
 function getFullName(user) {
   const firstName = user.firstName;
   const lastName = user.lastName;
 
   return `${firstName} ${lastName}`;
 }
-```
